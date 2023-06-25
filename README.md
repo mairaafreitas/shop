@@ -1,1 +1,1 @@
-# django-template
+# shop
