@@ -1,11 +1,22 @@
 FROM python:3.11.1-slim
 
+ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-WORKDIR /usr/src/app
+RUN useradd appuser \
+    && mkdir /home/appuser \
+    && chown appuser /home/appuser
 
-COPY poetry.lock pyproject.toml /usr/src/app/
+WORKDIR /app
+RUN chown appuser ./
 
-RUN pip3 install poetry
+COPY --chown=appuser pyproject.toml poetry.lock /app/
 
-RUN poetry install
+RUN pip install --upgrade pip \
+    && pip install poetry
+
+USER appuser
+
+RUN poetry install --no-root
+
+COPY --chown=appuser . /app/
