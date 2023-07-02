@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: shop
+  name: shop-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: shop-deployment
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: shop-deployment
+    spec:
+      containers:
+        - image: mairaafreitas/personal-projects:shop-3
+          name: shop
+          resources:
+            limits:
+              cpu: 0.5
+              memory: 256Mi
+            requests:
+              cpu: 0.25
+              memory: 128Mi
