@@ -1,6 +1,4 @@
 # https://docs.docker.com/engine/reference/builder/#dockerignore-file
-*
-!djangotemplate
-!manage.py
-!poetry*
-!pyproject.toml
+Dockerfile
+docker-compose.yml
+README.md

@@ -20,3 +20,6 @@ USER appuser
 RUN poetry install --no-root
 
 COPY --chown=appuser . /app/
+
+EXPOSE 8000
+CMD [ "poetry", "run", "python", "manage.py", "runserver", "0.0.0.0:8000" ]
