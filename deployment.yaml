@@ -5,11 +5,15 @@ metadata:
     app: shop
   name: shop-deployment
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: shop-deployment
-  strategy: {}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
   template:
     metadata:
       labels:
